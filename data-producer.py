@@ -4,8 +4,8 @@
 # - fetch information every second
 
 # - a simple version, write data to kafka.
-from kafka import KafkaProducer()
-from kafak.error import KafkaError
+from kafka import KafkaProducer
+from kafka.errors import KafkaError
 
 import argparse
 import logging
@@ -26,16 +26,16 @@ if __name__ == "__main__":
 	parser.add_argument('symbol', help='the symbol')
 	parser.add_argument('kafka_broker', help='ip address of kafka broker')
 	parser.add_argument('topic', help='the kafka topic to write to')
-	
+
 	args = parser.parse_args()
 	symbol = args.symbol
 	kafka_broker = args.kafka_broker
 	topic = args.topic
-	
+
 #	logger.debug('the symbol is %s' % symbol)
-	
+
 	# - instantiate a kafka producer
-	producer = KafkaProducer(
-		bootstrap_servers = kafka_broker
-	)
-	
+	producer = KafkaProducer(bootstrap_servers='192.168.99.102:9092')
+
+	producer.send(topic=topic, value='hello from tigers.')
+
