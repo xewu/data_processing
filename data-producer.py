@@ -4,8 +4,8 @@
 # - fetch information every second
 
 # - a simple version, write data to kafka.
-from kafka import KafkaProducer()
-from kafak.error import KafkaError
+from kafka import KafkaProducer
+from kafka.errors import KafkaError
 
 import argparse
 import logging
@@ -16,8 +16,8 @@ logger = logging.getLogger('data-producer')
 # - debug, info, warning, error
 logger.setLevel(logging.DEBUG)
 
-symbol = 'AAPL'
-kafka_broker = '127.0.0.1:9092'
+symbol = 'GOOG'
+kafka_broker = '192.168.99.102:9092'
 topic = 'data_analyzer'
 
 if __name__ == "__main__":
@@ -39,3 +39,4 @@ if __name__ == "__main__":
 		bootstrap_servers = kafka_broker
 	)
 	
+	producer.send(topic=topic, value='hello, from erica.')
